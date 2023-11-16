@@ -1,7 +1,6 @@
 import { env } from 'hono/adapter'
 
 async function call(data, org, bucket, token) {
-
     const url = 'https://us-east-1-1.aws.cloud2.influxdata.com/api/v2/write?org='+org+'&bucket='+bucket+'&precision=ns';
     const headers = {
       'Authorization': 'Token '+token,
@@ -34,7 +33,7 @@ var influxLogger = (fn = console.log) => {
     // .replaceAll('%40','@') => decodeURIComponent
     const metricName = c.env.INFLUXDB_MEASUREMENT_NAME //click or clicks
     const data = metricName + "," + decodeURIComponent(tags.toString()).replaceAll('&',',') + " " + fields.replaceAll('&',',');
-
+return console.log(data);
     const org = c.env.INFLUXDB_ORG
     const bucket = c.env.INFLUXDB_BUCKET
     const token = c.env.INFLUXDB_TOKEN
